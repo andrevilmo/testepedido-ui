@@ -5,9 +5,10 @@ import { AuthService } from '../auth.service';
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; 
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 @Component({
-  imports: [ FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions, CommonModule],
+  imports: [ FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions,MatInputModule,MatFormFieldModule, CommonModule],
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.scss']

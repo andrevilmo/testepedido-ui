@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './login/login'; 
@@ -11,7 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-
+import { HttpErrorInterceptor } from './http-errors-inteceptors';
+ 
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class App {
 
 @NgModule({
   imports: [BrowserModule,
+    
     HttpClientModule, 
     FormsModule,
     BrowserAnimationsModule,
@@ -33,6 +35,9 @@ export class App {
     MatInputModule,
     MatButtonModule,
     CommonModule
+  ],
+  providers: [
+    
   ],
   bootstrap: [App]
 })

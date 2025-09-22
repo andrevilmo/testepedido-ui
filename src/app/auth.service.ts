@@ -13,11 +13,14 @@ export class AuthService {
   constructor() {
     // Check for a token in local storag
     // e or session storage on app initialization
-    //const token = localStorage.getItem('authToken'); // Or sessionStorage
-    //if (token) {
-      // You might want to validate the token with your backend here
-      //this._isLoggedIn.next(true);
+    //if (localStorage) {
+    //    const token = localStorage.getItem('authToken'); // Or sessionStorage
+    //        if (token) {
+            // You might want to validate the token with your backend here
+            this._isLoggedIn.next(true);
+    //        }
     //}
+    
   }
 
   login(token: string) {
