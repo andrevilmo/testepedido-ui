@@ -9,10 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
-import { MatGridListModule } from '@angular/material/grid-list'; // Import MatGridListModule
+import { MatGridListModule } from '@angular/material/grid-list'; // Import MatGridListModule 
+import { MatCellDef, MatHeaderCellDef, MatHeaderRowDef, MatRowDef, MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
-  imports: [ MatCheckboxModule, MatGridListModule , FormsModule, MatRadioModule, FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions,MatInputModule,MatFormFieldModule, CommonModule],
+  imports: [ MatTableModule, MatHeaderCellDef,MatCellDef,MatRowDef,MatHeaderRowDef,MatHeaderCellDef,MatHeaderCellDef,MatCellDef, MatCheckboxModule, MatGridListModule , FormsModule, MatRadioModule, FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions,MatInputModule,MatFormFieldModule, CommonModule],
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.scss'
@@ -27,7 +28,12 @@ export class ProdutoComponent {
     estoqueAtual: 0,
   };
   message = '';
-
+    createTable() {
+     
+    this.dataSource = new MatTableDataSource(this.Resultset);
+    //this.dataSource.sort = this.sort;
+  }
+  dataSource: any;
   constructor(private produtoService: ProdutoService) {}
   Resultset : Produto[] = [];
   save() {
@@ -38,15 +44,18 @@ export class ProdutoComponent {
   }
   ngOnInit() {
     this.produtoService.all().subscribe({
-      next: (data) => {
-        console.log(data);
-        this.Resultset.push(...data); 
+      next: (response) => {
+        console.log(response.data);
+        this.Resultset = [...this.Resultset, ...response.data]; 
         console.log(this.Resultset);
       },
       error: (error) => console.error('There was an error!', error)
     });
   }
-
+  select(p: Produto ) {
+    console.log(p);
+    this.produto = p;
+  }
   reset() {
     this.produto = {
       id: 0,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -12,11 +12,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { HttpErrorInterceptor } from './http-errors-inteceptors';
- 
+ import { MatTableModule } from '@angular/material/table'
+import { ProdutoComponent } from '../components/produto/produto.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,ProdutoComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -26,7 +27,8 @@ export class App {
 
 @NgModule({
   imports: [BrowserModule,
-    
+    ProdutoComponent,
+    LoginComponent,
     HttpClientModule, 
     FormsModule,
     BrowserAnimationsModule,
@@ -35,11 +37,13 @@ export class App {
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatTableModule
   ],
   providers: [
     
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
   bootstrap: [App]
 })
 

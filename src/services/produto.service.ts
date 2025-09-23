@@ -20,13 +20,13 @@ export class ProdutoService {
         this.bearerToken = localStorage.getItem('authToken') ?? undefined;
   }
   save(produto: Produto): Observable<any> {
-    return this.http.post(`${this.apiUrl}/Save`, produto);
+    let headers = {"Authorization": `Bearer ${localStorage!=undefined?localStorage.getItem('authToken'):''}`};
+    return this.http.post(`${this.apiUrl}/Save`, produto,{headers: headers});
   }
 
   all(): Observable<any> {
       let headers = {"Authorization": `Bearer ${localStorage!=undefined?localStorage.getItem('authToken'):''}`};
       return this.http.get(`${this.apiUrl}/All`,{headers: headers});
-    
   }
 
   // Add more CRUD methods as needed (list, update, delete)
