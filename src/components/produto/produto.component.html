@@ -1,29 +1,41 @@
 <mat-card>
-  <mat-card-title>Cadastro de Produto</mat-card-title>
-  <mat-card-content>
-    <form (ngSubmit)="save()" #form="ngForm">
-      <mat-form-field class="full-width">
-        <mat-label>SKU</mat-label>
-        <input matInput [(ngModel)]="produto.sku" name="sku" required />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Nome</mat-label>
-        <input matInput [(ngModel)]="produto.nome" name="nome" required />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Preço Base</mat-label>
-        <input matInput type="number" [(ngModel)]="produto.precoBase" name="precoBase" required />
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Estoque Atual</mat-label>
-        <input matInput type="number" [(ngModel)]="produto.estoqueAtual" name="estoqueAtual" required />
-      </mat-form-field>
-      <mat-checkbox [(ngModel)]="produto.ativo" name="ativo">Ativo</mat-checkbox>
-      <div *ngIf="message" class="message">{{ message }}</div>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit">Salvar</button>
-        <button mat-button type="button" (click)="reset()">Limpar</button>
-      </mat-card-actions>
-    </form>
-  </mat-card-content>
+    <mat-card-title>Cadastro de Produto</mat-card-title>
+    <mat-card-content>
+        <form (ngSubmit)="save()" #form="ngForm">
+            <mat-form-field class="full-width">
+                <mat-label>SKU</mat-label>
+                <input matInput [(ngModel)]="produto.sku" name="sku" required />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Nome</mat-label>
+                <input matInput [(ngModel)]="produto.nome" name="nome" required />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Preço Base</mat-label>
+                <input matInput type="number" [(ngModel)]="produto.precoBase" name="precoBase" required />
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Estoque Atual</mat-label>
+                <input matInput type="number" [(ngModel)]="produto.estoqueAtual" name="estoqueAtual" required />
+            </mat-form-field>
+            <mat-checkbox [checked]="produto.ativo">
+                Ativo
+            </mat-checkbox>
+
+            <div *ngIf="message" class="message">{{ message }}</div>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" type="submit">Salvar</button>
+                <button mat-button type="button" (click)="reset()">Limpar</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
 </mat-card>
+
+<mat-grid-list cols="2" rowHeight="2:1">
+    <ng-container *ngFor="let item of Resultset">
+        <mat-grid-tile>1</mat-grid-tile>
+        <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-tile>3</mat-grid-tile>
+        <mat-grid-tile>4</mat-grid-tile>
+    </ng-container>
+</mat-grid-list>

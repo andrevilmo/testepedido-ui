@@ -7,9 +7,12 @@ import { CommonModule } from '@angular/common';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatGridListModule } from '@angular/material/grid-list'; // Import MatGridListModule
 
 @Component({
-  imports: [ FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions,MatInputModule,MatFormFieldModule, CommonModule],
+  imports: [ MatCheckboxModule, MatGridListModule , FormsModule, MatRadioModule, FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions,MatInputModule,MatFormFieldModule, CommonModule],
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.scss'
@@ -21,16 +24,26 @@ export class ProdutoComponent {
     nome: '',
     precoBase: 0,
     ativo: true,
-    estoqueAtual: 0
+    estoqueAtual: 0,
   };
   message = '';
 
   constructor(private produtoService: ProdutoService) {}
-
+  Resultset : Produto[] = [];
   save() {
     this.produtoService.save(this.produto).subscribe({
       next: () => this.message = 'Produto salvo com sucesso!',
       error: () => this.message = 'Erro ao salvar produto.'
+    });
+  }
+  ngOnInit() {
+    this.produtoService.all().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.Resultset.push(...data); 
+        console.log(this.Resultset);
+      },
+      error: (error) => console.error('There was an error!', error)
     });
   }
 

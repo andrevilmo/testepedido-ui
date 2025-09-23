@@ -34,6 +34,7 @@ export class App {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    ReactiveFormsModule,
     CommonModule
   ],
   providers: [
@@ -41,4 +42,5 @@ export class App {
   ],
   bootstrap: [App]
 })
+
 export class AppModule {}
