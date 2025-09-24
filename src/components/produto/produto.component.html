@@ -1,42 +1,11 @@
-<mat-card>
-    <mat-card-title>Cadastro de Produto</mat-card-title>
-    <mat-card-content>
-        <form (ngSubmit)="save()" #form="ngForm">
-            <mat-form-field class="full-width">
-                <mat-label>SKU</mat-label>
-                <input matInput [(ngModel)]="produto.sku" name="sku" required />
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <mat-label>Nome</mat-label>
-                <input matInput [(ngModel)]="produto.nome" name="nome" required />
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <mat-label>Preço Base</mat-label>
-                <input matInput type="number" [(ngModel)]="produto.precoBase" name="precoBase" required />
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <mat-label>Estoque Atual</mat-label>
-                <input matInput type="number" [(ngModel)]="produto.estoqueAtual" name="estoqueAtual" required />
-            </mat-form-field>
-            <mat-checkbox [checked]="produto.ativo">
-                Ativo
-            </mat-checkbox>
-
-            <div *ngIf="message" class="message">{{ message }}</div>
-            <mat-card-actions>
-                <button mat-raised-button color="primary" type="submit">Salvar</button>
-                <button mat-button type="button" (click)="reset()">Limpar</button>
-            </mat-card-actions>
-        </form>
-    </mat-card-content>
-</mat-card>
-
-
 
 <!-- Produto Grid -->
 <mat-card class="mt-4">
   <mat-card-title>Produtos</mat-card-title>
   <mat-card-content>
+    <button (click)="openDialog()" matMiniFab aria-label="Novo produto" class="example-standalone-trigger">
+        <mat-icon>add_box</mat-icon>
+    </button>
     <table mat-table [dataSource]="Resultset" class="mat-elevation-z8 full-width">
 
       <!-- ID Column -->
@@ -82,12 +51,3 @@
     </table>
   </mat-card-content>
 </mat-card>
-
-<mat-grid-list cols="4" >
-    <ng-container *ngFor="let item of Resultset">
-        <mat-grid-tile>{{item.sku}}</mat-grid-tile>
-        <mat-grid-tile>{{item.nome}}</mat-grid-tile>
-        <mat-grid-tile>{{item.precoBase}}</mat-grid-tile>
-        <mat-grid-tile>{{item.estoqueAtual}}</mat-grid-tile>
-    </ng-container>
-</mat-grid-list>

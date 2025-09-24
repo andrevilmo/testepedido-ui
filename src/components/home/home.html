@@ -1,0 +1,16 @@
+<button [cdkMenuTriggerFor]="menu" matMiniFab aria-label="Menu da aplicação" class="example-standalone-trigger">
+    <mat-icon>menu</mat-icon>
+</button>
+<ng-template #menu>
+  <div class="example-menu" cdkMenu>
+    <button class="example-menu-item" cdkMenuItem>Refresh</button>
+    <button class="example-menu-item" cdkMenuItem>Settings</button>
+    <button class="example-menu-item" cdkMenuItem>Help</button>
+    <button class="example-menu-item" (click)="logout()" cdkMenuItem>Logout</button>
+  </div>
+</ng-template>
+<div *ngIf="isLogged && isAdmin()">
+    <app-produto></app-produto>
+</div>
+
+    
