@@ -1,9 +1,9 @@
 
-<!-- Produto Grid -->
+<!-- Promotion Grid -->
 <mat-card class="mt-4">
-  <mat-card-title>Produtos</mat-card-title>
+  <mat-card-title>Promotions</mat-card-title>
   <mat-card-content>
-    <button (click)="openDialog()" matMiniFab aria-label="Novo produto" class="example-standalone-trigger">
+    <button (click)="openDialog()" matMiniFab aria-label="Novo promotion" class="example-standalone-trigger">
         <mat-icon>add_box</mat-icon>
     </button>
     <table mat-table [dataSource]="Resultset" class="mat-elevation-z8 full-width">
@@ -11,38 +11,38 @@
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let produto"><button matButton="elevated"  (click)="select(produto)">{{ produto.id }}</button> </td>
+        <td mat-cell *matCellDef="let promotion"><button (click)="select(promotion)">{{ promotion.id }}</button> </td>
       </ng-container>
 
       <!-- SKU Column -->
       <ng-container matColumnDef="sku">
         <th mat-header-cell *matHeaderCellDef>SKU</th>
-        <td mat-cell *matCellDef="let produto">{{ produto.sku }}</td>
+        <td mat-cell *matCellDef="let promotion">{{ promotion.sku }}</td>
       </ng-container>
 
       <!-- Nome Column -->
       <ng-container matColumnDef="nome">
         <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let produto">{{ produto.nome }}</td>
+        <td mat-cell *matCellDef="let promotion">{{ promotion.nome }}</td>
       </ng-container>
 
       <!-- Preço Base Column -->
       <ng-container matColumnDef="precoBase">
         <th mat-header-cell *matHeaderCellDef>Preço Base</th>
-        <td mat-cell *matCellDef="let produto">{{ produto.precoBase }}</td>
+        <td mat-cell *matCellDef="let promotion">{{ promotion.precoBase }}</td>
       </ng-container>
 
       <!-- Estoque Atual Column -->
       <ng-container matColumnDef="estoqueAtual">
         <th mat-header-cell *matHeaderCellDef>Estoque Atual</th>
-        <td mat-cell *matCellDef="let produto">{{ produto.estoqueAtual }}</td>
+        <td mat-cell *matCellDef="let promotion">{{ promotion.estoqueAtual }}</td>
       </ng-container>
 
       <!-- Ativo Column -->
       <ng-container matColumnDef="ativo">
         <th mat-header-cell *matHeaderCellDef>Ativo</th>
-        <td mat-cell *matCellDef="let produto">
-          <mat-checkbox [checked]="produto.ativo" disabled></mat-checkbox>
+        <td mat-cell *matCellDef="let promotion">
+          <mat-checkbox [checked]="promotion.ativo" disabled></mat-checkbox>
         </td>
       </ng-container>
 

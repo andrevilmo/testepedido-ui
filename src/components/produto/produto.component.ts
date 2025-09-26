@@ -21,8 +21,11 @@ import {
   
 } from '@angular/material/dialog';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
-
-// Removed duplicate Produto class declaration, using imported Produto type/interface instead.
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider'; 
+import { NewProductDialog } from './new/new-product-modal';
+ 
 
 @Component({
   imports: [ MatIcon, MatIconModule,  MatTableModule,   MatCheckboxModule, MatGridListModule , FormsModule, MatRadioModule, FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatInputModule,CommonModule],
@@ -76,6 +79,13 @@ export class ProdutoComponent {
   select(p: Produto ) {
     console.log(p);
     this.produto = p;
+     this.dialog.open(NewProductDialog, {
+      data : this.produto
+    }).afterClosed().subscribe({
+      next: (res: any) =>  {
+        this.load().subscribe({});
+      }
+    })
   }
   openDialog() {
     this.dialog.open(NewProductDialog, {
@@ -85,56 +95,5 @@ export class ProdutoComponent {
         this.load().subscribe({});
       }
     })
-  }
-}
-
-@Component({
-  selector: 'new-product-dialog',
-  templateUrl: 'new-product-modal.html',
-  imports: [ MatTableModule,  MatIcon, MatIconModule, MatCheckboxModule, MatGridListModule , FormsModule, MatRadioModule, FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatFormField,MatLabel,MatFormField,MatCardActions,MatInputModule,MatFormFieldModule, CommonModule],
-})
-export class NewProductDialog {
-  data = inject(MAT_DIALOG_DATA);
-  message = '';
-  produto: Produto = {
-    id: 0,
-    sku: '',
-    nome: '',
-    precoBase: 0,
-    ativo: true,
-    estoqueAtual: 0,
-  };
-
-    private _isSaved = new BehaviorSubject<boolean>(false);
-    _isSaved$: Observable<boolean> = this._isSaved.asObservable();
-
-  readonly dialogRef = inject(MatDialogRef<NewProductDialog>);
-  
-  constructor(private produtoService: ProdutoService) {}
-  save(): Observable<boolean> {
-    this.produtoService.save(this.produto).subscribe({
-      next: () => {
-        this.message = 'Produto salvo com sucesso!'; 
-        
-        this.dialogRef.close();
-        return this._isSaved.asObservable();
-        /*this.load().subscribe({next:()=>this.message='Lista atualizada',error:()=>this.message='Erro ao carregar lista'});*/ 
-      },
-      error: () => this.message = 'Erro ao salvar produto.'
-    });
-    return this._isSaved.asObservable();
-  }
-   close(): Observable<boolean> {
-    return this._isSaved.asObservable();
-  }
-  reset() {
-    this.produto = {
-      id: 0,
-      sku: '',
-      nome: '',
-      precoBase: 0,
-      ativo: true,
-      estoqueAtual: 0
-    };
   }
 }

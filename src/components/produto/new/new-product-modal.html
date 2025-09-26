@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-title>Cadastro de Produto</mat-card-title>
     <mat-card-content>
-      <form (ngSubmit)="save()" #form="ngForm">
+      <form #form="ngForm">
         <mat-form-field class="full-width">
           <mat-label>SKU</mat-label>
           <input matInput [(ngModel)]="produto.sku" name="sku" required />
@@ -27,15 +27,17 @@
 
         <div *ngIf="message" class="message">{{ message }}</div>
         <mat-card-actions align="end">
-          <button type="submit" matMiniFab aria-label="Novo produto" class="example-standalone-trigger">
-            <mat-icon>save</mat-icon>
-          </button>
-          <button (click)="close()" matMiniFab aria-label="Novo produto" class="example-standalone-trigger">
-            <mat-icon>close</mat-icon>
-          </button>
-          <button (click)="reset()" matMiniFab aria-label="Novo produto" class="example-standalone-trigger">
-            <mat-icon>cleaning_services</mat-icon>
-          </button>
+          
+            <button (click)="save()" aria-label="Salvar produto"
+              matMiniFab 
+              class="example-standalone-trigger">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button (click)="close()" matMiniFab aria-label="Fechar janela"
+              class="example-standalone-trigger">
+              <mat-icon>close</mat-icon>
+            </button>
+          
         </mat-card-actions>
       </form>
     </mat-card-content>

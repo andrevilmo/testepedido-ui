@@ -1,0 +1,43 @@
+<div class="content-modal" style="margin: 5% 5% 5% 5% !important;">
+  <mat-card>
+    <mat-card-title>Cadastro de Promotion</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="save()" #form="ngForm">
+        <mat-form-field class="full-width">
+          <mat-label>SKU</mat-label>
+          <input matInput [(ngModel)]="promotion.sku" name="sku" required />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Nome</mat-label>
+          <input matInput [(ngModel)]="promotion.nome" name="nome" required />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Preço Base</mat-label>
+          <input matInput type="number" [(ngModel)]="promotion.precoBase" name="precoBase" required />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Estoque Atual</mat-label>
+          <input matInput type="number" [(ngModel)]="promotion.estoqueAtual" name="estoqueAtual" required />
+        </mat-form-field>
+
+        <mat-checkbox [checked]="promotion.ativo">
+          Ativo
+        </mat-checkbox>
+
+
+        <div *ngIf="message" class="message">{{ message }}</div>
+        <mat-card-actions align="end">
+          
+            <button type="submit" matButton="elevated" aria-label="Novo promotion" class="example-standalone-trigger">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button (click)="close()" matButton="elevated" aria-label="Novo promotion"
+              class="example-standalone-trigger">
+              <mat-icon>close</mat-icon>
+            </button>
+          
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,16 +1,19 @@
-<button [cdkMenuTriggerFor]="menu" matMiniFab aria-label="Menu da aplicação" class="example-standalone-trigger">
-    <mat-icon>menu</mat-icon>
-</button>
-<ng-template #menu>
-  <div class="example-menu" cdkMenu>
-    <button class="example-menu-item" cdkMenuItem>Refresh</button>
-    <button class="example-menu-item" cdkMenuItem>Settings</button>
-    <button class="example-menu-item" cdkMenuItem>Help</button>
-    <button class="example-menu-item" (click)="logout()" cdkMenuItem>Logout</button>
-  </div>
-</ng-template>
 <div *ngIf="isLogged && isAdmin()">
-    <app-produto></app-produto>
-</div>
-
+    <mat-toolbar>
+        <button [cdkMenuTriggerFor]="menu" matMiniFab aria-label="Menu da aplicação" class="menu-home example-standalone-trigger">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <ng-template #menu>
+            <div class="example-menu" cdkMenu>
+                <button class="example-menu-item" matButton (click)="seleciona('produto')"  >Produtos</button>
+                <button class="example-menu-item" matButton (click)="seleciona('promocao')"  >Promoções</button>
+                <mat-divider></mat-divider>
+                <button class="example-menu-item" (click)="logout()" matButton   >Logout</button>
+            </div>
+        </ng-template>
+    </mat-toolbar>
     
+</div>
+<div class="content-main">
+    <app-produto *ngIf="isPath('produto')"></app-produto>
+</div>

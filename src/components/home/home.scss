@@ -1,68 +1,95 @@
 .example-menu {
-  display: inline-flex;
-  flex-direction: column;
-  min-width: 180px;
-  max-width: 280px;
-  background-color: rgba(255, 255, 255);
-  padding: 6px 0;
+    display: inline-flex;
+    flex-direction: column;
+    min-width: 180px;
+    max-width: 280px;
+    background-color: rgba(255, 255, 255);
+    padding: 6px 0;
 }
 
 .example-menu-item,
 .example-standalone-trigger {
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
 
-  user-select: none;
-  min-width: 64px;
-  line-height: 36px;
-  padding: 0 16px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
 
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex: 1;
+    user-select: none;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
 }
 
 .example-menu-item:hover {
-  background-color: rgb(208, 208, 208);
+    background-color: rgb(208, 208, 208);
 }
 
 .example-menu-item:active {
-  background-color: rgb(170, 170, 170);
+    background-color: rgb(170, 170, 170);
 }
 
 .example-standalone-item {
-  background-color: rgb(239, 239, 239);
+    background-color: rgb(239, 239, 239);
 }
+
 .example-standalone-item:hover {
-  background-color: rgb(208, 208, 208);
+    background-color: rgb(208, 208, 208);
 }
+
 .example-standalone-item[aria-expanded='true'] {
-  background-color: rgb(208, 208, 208);
+    background-color: rgb(208, 208, 208);
 }
 
 section {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .example-label {
-  font-size: 14px;
-  margin: 0 16px 0 8px;
-  min-width: 120px;
+    font-size: 14px;
+    margin: 0 16px 0 8px;
+    min-width: 120px;
 }
 
 .example-button-row {
-  max-width: 600px;
+    max-width: 600px;
 }
 
 .example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
+    margin: 8px 8px 8px 0;
 }
 
 .example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.menu-home {
+
+    width: 80px !important;
+    max-width: 80px !important;
+    align-self: end;
+    margin-left: 93%;
+    margin-bottom: 1%;
+    top: 1em;
+    right: 1em;
+    z-index: 1000 !important;
+    
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+.content-main {
+    width: 90%;
+    margin-left: 1%;
 }
