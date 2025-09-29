@@ -23,6 +23,11 @@ export class ProdutoService {
     let headers = {"Authorization": `Bearer ${localStorage!=undefined?localStorage.getItem('authToken'):''}`};
     return this.http.post(`${this.apiUrl}/Save`, produto,{headers: headers});
   }
+  delete(produto: Produto): Observable<any> {
+    console.log('APAGNADO PRODUTO');
+    let headers = {"Authorization": `Bearer ${localStorage!=undefined?localStorage.getItem('authToken'):''}`};
+    return this.http.delete(`${this.apiUrl}/Delete/`+produto.id, {headers: headers});
+  }
 
   all(): Observable<any> {
       let headers = {"Authorization": `Bearer ${localStorage!=undefined?localStorage.getItem('authToken'):''}`};

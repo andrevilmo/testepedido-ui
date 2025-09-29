@@ -25,10 +25,36 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider'; 
 import { NewProductDialog } from './new/new-product-modal';
+import { DeleteProductDialog } from './delete/delete-product-modal';
  
 
 @Component({
-  imports: [ MatIcon, MatIconModule,  MatTableModule,   MatCheckboxModule, MatGridListModule , FormsModule, MatRadioModule, FormsModule,HttpClientModule,MatCard ,MatCardTitle,MatCardContent,MatInputModule,CommonModule],
+  imports: [ 
+    MatIcon, 
+    MatIconModule, 
+    MatCardActions,  
+    MatTableModule,   
+    MatCheckboxModule, 
+    MatGridListModule , 
+    FormsModule, 
+    MatRadioModule, 
+    FormsModule,
+    HttpClientModule,
+    MatCard ,
+    MatCardTitle,
+    MatCardContent,
+    MatInputModule,
+    CommonModule,
+    MatToolbarModule, 
+    MatIcon, 
+    MatRadioModule, 
+    
+    
+    MatFormFieldModule, 
+    MatButtonModule,
+    MatDividerModule,
+    
+  ],
   selector: 'app-produto',
   templateUrl: './produto.component.html',
   styleUrl: './produto.component.scss'
@@ -80,6 +106,17 @@ export class ProdutoComponent {
     console.log(p);
     this.produto = p;
      this.dialog.open(NewProductDialog, {
+      data : this.produto
+    }).afterClosed().subscribe({
+      next: (res: any) =>  {
+        this.load().subscribe({});
+      }
+    })
+  }
+  delete(p: Produto ) {
+    console.log(p);
+    this.produto = p;
+     this.dialog.open(DeleteProductDialog, {
       data : this.produto
     }).afterClosed().subscribe({
       next: (res: any) =>  {

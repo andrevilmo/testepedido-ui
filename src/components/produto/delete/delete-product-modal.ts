@@ -25,9 +25,9 @@ import { Produto, ProdutoService } from '../../../services/produto.service';
  
 
 @Component({
-  selector: 'new-product-dialog',
-  templateUrl: 'new-product-modal.html',
-  styleUrl: 'new-product-modal.scss',
+  selector: 'delete-product-dialog',
+  templateUrl: 'delete-product-modal.html',
+  styleUrl: 'delete-product-modal.scss',
   imports: [ 
     MatToolbarModule, 
     MatTableModule,  
@@ -60,7 +60,7 @@ import { Produto, ProdutoService } from '../../../services/produto.service';
             
   ],
 })
-export class NewProductDialog {
+export class DeleteProductDialog {
   data = inject(MAT_DIALOG_DATA);
   message = '';
   produto: Produto = {
@@ -72,26 +72,25 @@ export class NewProductDialog {
     estoqueAtual: 0,
   };
 
-    private _isSaved = new BehaviorSubject<boolean>(false);
-    _isSaved$: Observable<boolean> = this._isSaved.asObservable();
+    private _isDeleted = new BehaviorSubject<boolean>(false);
+    _isDeleted$: Observable<boolean> = this._isDeleted.asObservable();
 
-  readonly dialogRef = inject(MatDialogRef<NewProductDialog>);
+  readonly dialogRef = inject(MatDialogRef<DeleteProductDialog>);
   
   constructor(private produtoService: ProdutoService) {
     if (this.data!=null)
       this.produto = this.data;
   }
-  save(): Observable<boolean> {
-    this.produtoService.save(this.produto).subscribe({
+  delete(): Observable<boolean> {
+    this.produtoService.delete(this.produto).subscribe({
       next: () => {
-        this.message = 'Produto salvo com sucesso!'; 
-        
+        this.message = 'Produto excluído com sucesso!'; 
         this.dialogRef.close();
-        return this._isSaved.asObservable();
+        return this._isDeleted.asObservable();
       },
       error: () => this.message = 'Erro ao salvar produto.'
     });
-    return this._isSaved.asObservable();
+    return this._isDeleted.asObservable();
   }
   close() {
         this.dialogRef.close();
