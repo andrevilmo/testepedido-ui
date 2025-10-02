@@ -1,8 +1,8 @@
 <div class="content-modal" style="margin: 5% 5% 5% 5% !important;">
   <mat-card>
-    <mat-card-title>Cadastro de Promotion</mat-card-title>
+    <mat-card-title>Cadastro de Promoções</mat-card-title>
     <mat-card-content>
-      <form (ngSubmit)="save()" #form="ngForm">
+      <form #form="ngForm">
         <mat-form-field class="full-width">
           <mat-label>SKU</mat-label>
           <input matInput [(ngModel)]="promotion.sku" name="sku" required />
@@ -27,15 +27,17 @@
 
         <div *ngIf="message" class="message">{{ message }}</div>
         <mat-card-actions align="end">
-          
-            <button type="submit" matButton="elevated" aria-label="Novo promotion" class="example-standalone-trigger">
+          <div class="buttons-dialogs">
+            <button (click)="save()" aria-label="Salvar promotion"
+              matMiniFab 
+              class="example-standalone-trigger">
               <mat-icon>save</mat-icon>
             </button>
-            <button (click)="close()" matButton="elevated" aria-label="Novo promotion"
+            <button (click)="close()" matMiniFab aria-label="Fechar janela"
               class="example-standalone-trigger">
               <mat-icon>close</mat-icon>
             </button>
-          
+          </div>
         </mat-card-actions>
       </form>
     </mat-card-content>

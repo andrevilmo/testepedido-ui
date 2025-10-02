@@ -13,7 +13,7 @@ export interface Promotion {
 
 @Injectable({ providedIn: 'root' })
 export class PromotionService {
-  private apiUrl = 'http://localhost:5000/api/Promotion';
+  private apiUrl = 'http://localhost:5000/api/Promocao';
   private bearerToken?: string; 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {

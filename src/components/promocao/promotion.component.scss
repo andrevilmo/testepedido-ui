@@ -1,24 +1,38 @@
-
-.example-standalone-trigger {
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-
-  user-select: none;
-  min-width: 64px;
-  line-height: 36px;
-  padding: 0 16px;
-
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex: 1;
+.buttons-dialogs {
+  width: 100%;
+}
+.buttons-dialogs > button {
+  margin-left: 1%;
+}
+.mat-mdc-form-field {
+  margin-left: 5%;
+  margin-top: 5%;
+}
+.mdc-checkbox
+{
+  margin-left: 15%;
+}
+.mat-mdc-card-title, .mat-mdc-card-subtitle {
+    display: block;
+    margin: 0;
+    margin: 2% 2%;
+}
+.buttons-dialogs > button {
+    margin-left: 5%;
+    width: 30%;
 }
 
-.content-modal {
-    margin: 5% 5% 5% 5% !important;
+.example-icon {
+  padding: 0 14px;
+}
+.example-spacer {
+  flex: 1 1 auto;
 }
 
-.mat-mdc-card {
-    padding: 1% 1% 1% 1%;
+.mat-toolbar-row, .mat-toolbar-single-row {
+    padding-right: 7%;
+}
+
+.action-header {
+    text-align: center;
 }

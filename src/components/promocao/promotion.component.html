@@ -1,53 +1,74 @@
-
 <!-- Promotion Grid -->
 <mat-card class="mt-4">
-  <mat-card-title>Promotions</mat-card-title>
-  <mat-card-content>
-    <button (click)="openDialog()" matMiniFab aria-label="Novo promotion" class="example-standalone-trigger">
-        <mat-icon>add_box</mat-icon>
-    </button>
-    <table mat-table [dataSource]="Resultset" class="mat-elevation-z8 full-width">
+    <mat-card-title>Promoção</mat-card-title>
+    <mat-card-content>
+        <mat-toolbar>
 
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let promotion"><button (click)="select(promotion)">{{ promotion.id }}</button> </td>
-      </ng-container>
+            <mat-toolbar-row>
+                
+                <span class="example-spacer"></span>
 
-      <!-- SKU Column -->
-      <ng-container matColumnDef="sku">
-        <th mat-header-cell *matHeaderCellDef>SKU</th>
-        <td mat-cell *matCellDef="let promotion">{{ promotion.sku }}</td>
-      </ng-container>
+                <button (click)="openDialog()" matMiniFab aria-label="Novo promotion" class="example-standalone-trigger">
+                    <mat-icon>add_box</mat-icon>
+                </button>
 
-      <!-- Nome Column -->
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let promotion">{{ promotion.nome }}</td>
-      </ng-container>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <table mat-table [dataSource]="Resultset" class="mat-elevation-z8 full-width">
 
-      <!-- Preço Base Column -->
-      <ng-container matColumnDef="precoBase">
-        <th mat-header-cell *matHeaderCellDef>Preço Base</th>
-        <td mat-cell *matCellDef="let promotion">{{ promotion.precoBase }}</td>
-      </ng-container>
 
-      <!-- Estoque Atual Column -->
-      <ng-container matColumnDef="estoqueAtual">
-        <th mat-header-cell *matHeaderCellDef>Estoque Atual</th>
-        <td mat-cell *matCellDef="let promotion">{{ promotion.estoqueAtual }}</td>
-      </ng-container>
 
-      <!-- Ativo Column -->
-      <ng-container matColumnDef="ativo">
-        <th mat-header-cell *matHeaderCellDef>Ativo</th>
-        <td mat-cell *matCellDef="let promotion">
-          <mat-checkbox [checked]="promotion.ativo" disabled></mat-checkbox>
-        </td>
-      </ng-container>
+            <!-- SKU Column -->
+            <ng-container matColumnDef="sku">
+                <th mat-header-cell *matHeaderCellDef>SKU</th>
+                <td mat-cell *matCellDef="let promotion">{{ promotion.sku }}</td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="['id', 'sku', 'nome', 'precoBase', 'estoqueAtual', 'ativo']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['id', 'sku', 'nome', 'precoBase', 'estoqueAtual', 'ativo'];"></tr>
-    </table>
-  </mat-card-content>
+            <!-- Nome Column -->
+            <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let promotion">{{ promotion.nome }}</td>
+            </ng-container>
+
+            <!-- Preço Base Column -->
+            <ng-container matColumnDef="precoBase">
+                <th mat-header-cell *matHeaderCellDef>Preço Base</th>
+                <td mat-cell *matCellDef="let promotion">{{ promotion.precoBase }}</td>
+            </ng-container>
+
+            <!-- Estoque Atual Column -->
+            <ng-container matColumnDef="estoqueAtual">
+                <th mat-header-cell *matHeaderCellDef>Estoque Atual</th>
+                <td mat-cell *matCellDef="let promotion">{{ promotion.estoqueAtual }}</td>
+            </ng-container>
+
+            <!-- Ativo Column -->
+            <ng-container matColumnDef="ativo">
+                <th mat-header-cell *matHeaderCellDef>Ativo</th>
+                <td mat-cell *matCellDef="let promotion">
+                    <mat-checkbox [checked]="promotion.ativo" disabled></mat-checkbox>
+                </td>
+            </ng-container>
+
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class="action-header">Ações</th>
+                <td mat-cell *matCellDef="let promotion">
+                    <mat-card-actions align="start">
+                        <div class="buttons-dialogs">
+                            <button matMiniFab class="example-standalone-trigger" (click)="select(promotion)"><mat-icon>edit</mat-icon></button>
+                            <button matMiniFab class="example-standalone-trigger" (click)="delete(promotion)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card-actions>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['sku', 'nome', 'precoBase', 'estoqueAtual', 'ativo','id']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['sku', 'nome', 'precoBase', 'estoqueAtual', 'ativo','id'];">
+            </tr>
+        </table>
+    </mat-card-content>
 </mat-card>
