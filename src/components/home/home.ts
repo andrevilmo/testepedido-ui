@@ -11,6 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { PromotionComponent } from '../promocao/promotion.component';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
             MatIconModule, 
             MatIcon, 
             ProdutoComponent, 
+            PromotionComponent,
             CommonModule, 
             CdkMenuTrigger, 
             CdkMenu, 

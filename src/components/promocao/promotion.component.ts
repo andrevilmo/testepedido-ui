@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core'; 
-import { Produto, ProdutoService } from '../../services/produto.service';
+import { Promotion, PromotionService } from '../../services/promotion.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/material/card';
@@ -55,12 +55,12 @@ import { DeletePromotionDialog } from './delete/delete-promotion-modal';
     MatDividerModule,
     
   ],
-  selector: 'app-produto',
-  templateUrl: './produto.component.html',
-  styleUrl: './produto.component.scss'
+  selector: 'app-promotion',
+  templateUrl: './promotion.component.html',
+  styleUrl: './promotion.component.scss'
 })
-export class ProdutoComponent {
-  produto: Produto = {
+export class PromotionComponent {
+  promotion: Promotion = {
     id: 0,
     sku: '',
     nome: '',
@@ -74,14 +74,14 @@ export class ProdutoComponent {
   }
   dataSource: any;
   dialog = inject(MatDialog);
-  Resultset : Produto[] = [];
+  Resultset : Promotion[] = [];
   private _isLoaded = new BehaviorSubject<boolean>(false);
   _isLoaded$: Observable<boolean> = this._isLoaded.asObservable();
 
-  constructor(private produtoService: ProdutoService) {}
+  constructor(private promotionService: PromotionService) {}
   
   load(): Observable<boolean> {
-    this.produtoService.all().subscribe({
+    this.promotionService.all().subscribe({
       next: (response) => {
         console.log(response.data);
         this.Resultset = [...response.data]; 
@@ -93,7 +93,7 @@ export class ProdutoComponent {
     return this._isLoaded.asObservable(); 
   }
   ngOnInit() {
-    this.produtoService.all().subscribe({
+    this.promotionService.all().subscribe({
       next: (response) => {
         console.log(response.data);
         this.Resultset = [...this.Resultset, ...response.data]; 
@@ -102,22 +102,22 @@ export class ProdutoComponent {
       error: (error) => console.error('There was an error!', error)
     });
   }
-  select(p: Produto ) {
+  select(p: Promotion ) {
     console.log(p);
-    this.produto = p;
+    this.promotion = p;
      this.dialog.open(NewPromotionDialog, {
-      data : this.produto
+      data : this.promotion
     }).afterClosed().subscribe({
       next: (res: any) =>  {
         this.load().subscribe({});
       }
     })
   }
-  delete(p: Produto ) {
+  delete(p: Promotion ) {
     console.log(p);
-    this.produto = p;
+    this.promotion = p;
      this.dialog.open(DeletePromotionDialog, {
-      data : this.produto
+      data : this.promotion
     }).afterClosed().subscribe({
       next: (res: any) =>  {
         this.load().subscribe({});
